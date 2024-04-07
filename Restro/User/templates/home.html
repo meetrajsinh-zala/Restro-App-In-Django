@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>home</title>
+
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper@8/swiper-bundle.min.css"
+    />
+
+    <!-- font awesome cdn link  -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+    />
+
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="static/css/style.css" />
+  </head>
+  <body>
+    <header class="header">
+      <section class="flex">
+        <a href="" class="logo">Restro 😋</a>
+
+        <nav class="navbar">
+          <a href="">home</a>
+          <a href="about/">about</a>
+          <a href="menu/">menu</a>
+          <a href="contact/">contact</a>
+        </nav>
+
+        <div class="icons">
+          <!-- <a href="search/"><i class="fas fa-search"></i></a> -->
+          {% if username != 'Guest' %}
+          <a href="cart/"><i class="fas fa-shopping-cart"></i></a>
+          {% endif %}
+          <div id="user-btn" class="fas fa-user"></div>
+          <div id="menu-btn" class="fas fa-bars"></div>
+        </div>
+
+        <div class="profile">
+          <p class="name">{{ username }}</p>
+          <div class="flex">
+            {% if username != 'Guest' %}
+            <a href="../profile/" class="btn">profile</a>
+            <a href="../?Logout=true" class="delete-btn">logout</a>
+            {% endif %}
+          </div>
+
+          {% if username == 'Guest' %}
+          <p class="account">
+            <a href="login/">login</a> or
+            <a href="register/">register</a>
+          </p>
+          {% endif %}
+          <div class="admin-login">
+            <a
+              href="../../AdminPanel/Admin_Login/"
+              class="btn"
+              style="background-color: rgba(255, 68, 0, 0.788); color: white"
+              >Admin Login</a
+            >
+          </div>
+        </div>
+      </section>
+    </header>
+
+    <section class="home">
+      <div class="swiper home-slider">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide slide">
+            <div class="content">
+              <span>order online</span>
+              <h3>delicious pizza</h3>
+              <a href="menu/" class="btn">see menus</a>
+            </div>
+            <div class="image">
+              <img src="static/home-img-1.png" alt="" />
+            </div>
+          </div>
+
+          <div class="swiper-slide slide">
+            <div class="content">
+              <span>order online</span>
+              <h3>double hamburger</h3>
+              <a href="menu/" class="btn">see menus</a>
+            </div>
+            <div class="image">
+              <img src="static/home-img-2.png" alt="" />
+            </div>
+          </div>
+
+          <div class="swiper-slide slide">
+            <div class="content">
+              <span>order online</span>
+              <h3>Salad</h3>
+              <a href="menu/" class="btn">see menus</a>
+            </div>
+            <div class="image">
+              <img src="static/home-img-3.png" alt="" />
+            </div>
+          </div>
+        </div>
+
+        <div class="swiper-pagination"></div>
+      </div>
+    </section>
+
+    <section class="category">
+      <h1 class="title">food category</h1>
+
+      <div class="box-container">
+        <a href="#" class="box">
+          <img src="static/cat-1.png" alt="" />
+          <h3>fast food</h3>
+        </a>
+
+        <a href="#" class="box">
+          <img src="static/cat-2.png" alt="" />
+          <h3>main dishes</h3>
+        </a>
+
+        <a href="#" class="box">
+          <img src="static/cat-3.png" alt="" />
+          <h3>drinks</h3>
+        </a>
+
+        <a href="#" class="box">
+          <img src="static/cat-4.png" alt="" />
+          <h3>desserts</h3>
+        </a>
+      </div>
+    </section>
+
+    <section class="products">
+      <h1 class="title">latest dishes</h1>
+
+      <div class="box-container">
+        {% for item in items %}
+        <form accept="" method="post" class="box">
+          {% csrf_token %}
+          <img src="{{ item.image }}" alt="" />
+          <a href="#" class="cat">{{ item.category }}</a>
+          <div class="name">{{ item.name }}</div>
+          <div class="flex">
+            <div class="price">
+              <span>Rs</span>{{ item.price }}<span>/-</span>
+            </div>
+          </div>
+        </form>
+        {% endfor %}
+      </div>
+
+      <div class="more-btn">
+        <a href="../menu/" class="btn">veiw all</a>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <section class="box-container">
+        <div class="box">
+          <img src="static/email-icon.png" alt="" />
+          <h3>our email</h3>
+          <a href="mailto:restro@gmail.com">restro@gmail.com</a>
+        </div>
+
+        <div class="box">
+          <img src="static/clock-icon.png" alt="" />
+          <h3>opening hours</h3>
+          <p>00:07am to 00:10pm</p>
+        </div>
+
+        <div class="box">
+          <img src="static/map-icon.png" alt="" />
+          <h3>our address</h3>
+          <a href="https://www.google.com/maps">Ahmedabad, india - 382345</a>
+        </div>
+
+        <div class="box">
+          <img src="static/phone-icon.png" alt="" />
+          <h3>our number</h3>
+          <a href="tel:1234567890">+123-456-7890</a>
+          <a href="tel:1112223333">+111-222-3333</a>
+        </div>
+      </section>
+
+      <div class="credit">
+        &copy; copyright @ 2022 by <span>Restro</span> | all rights reserved!
+      </div>
+    </footer>
+
+    <div class="loader">
+      <img src="static/loader.gif" alt="" />
+    </div>
+
+    <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+
+    <script src="static/js/script.js"></script>
+
+    <script>
+      var swiper = new Swiper(".home-slider", {
+        loop: true,
+        grabCursor: true,
+        effect: "flip",
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+      });
+    </script>
+  </body>
+</html>

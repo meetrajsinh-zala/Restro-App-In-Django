@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Panel</title>
+
+    <!--font awesome-->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!--css file-->
+    <link rel="stylesheet" href="../../static/CSS/menu.css" />
+  </head>
+  <body>
+    <section class="sidebar hide">
+      <a href="#" class="logo">
+        <i class="fab fa-slack"></i>
+        <span class="text">Admin Panel</span>
+      </a>
+
+      <ul class="side-menu top">
+        <li>
+          <a href="../Admin_Dashboard" class="nav-link">
+            <i class="fas fa-border-all"></i>
+            <span class="text">Dashboard</span>
+          </a>
+        </li>
+        <li class="active">
+          <a href="../Admin_Menu" class="nav-link">
+            <i class="fa-solid fa-bowl-food"></i>
+            <span class="text">Menu</span>
+          </a>
+        </li>
+        <li>
+          <a href="../Admin_Order" class="nav-link">
+            <i class="fa-solid fa-truck"></i>
+            <span class="text">Orders</span>
+          </a>
+        </li>
+      </ul>
+
+      <ul class="side-menu">
+        <li>
+          <a href="../Admin_Login" class="logout">
+            <i class="fas fa-right-from-bracket"></i>
+            <span class="text">Logout</span>
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <section class="content">
+      <nav>
+        <i class="fas fa-bars menu-btn"></i>
+
+        <a href="#" class="profile">
+          <img src="../../static/pic-5.png" alt="" />
+        </a>
+      </nav>
+
+      <main>
+        <div class="head-title">
+          <div class="left">
+            <h1>Menu</h1>
+          </div>
+
+          <a href="../Add_Menu" class="download-btn">
+            <i class="fa-solid fa-plus"></i>
+            <span class="text">Add Item</span>
+          </a>
+        </div>
+
+        <div class="box-info">
+          <li>
+            <i class="fas fa-calendar-check"></i>
+            <span class="text">
+              <h3>{{ Total_Order }}</h3>
+              <p>Completed Orders</p>
+            </span>
+          </li>
+          <li>
+            <i class="fas fa-dollar-sign"></i>
+            <span class="text">
+              <h3>Rs {{ Grand_Total }}</h3>
+              <p>Revenue</p>
+            </span>
+          </li>
+        </div>
+
+        <div class="table-data">
+          <div class="order">
+            <div class="head">
+              <h3>Menu List</h3>
+            </div>
+
+            <table>
+              <thead>
+                <tr>
+                  <th>Item Name</th>
+                  <th>Price</th>
+                  <th>Update</th>
+                  <th>Delete</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for item in Menu_items %}
+                <tr>
+                  <td><p>{{ item.name }}</p></td>
+                  <td>Rs {{ item.price }}</td>
+                  <td>
+                    <a href="../Update_Menu/?item_name={{ item.name }}"
+                      ><span class="status complete">Update Item</span></a
+                    >
+                  </td>
+                  <td>
+                    <a href="../Delete_Menu/?item_name={{ item.name }}"
+                      ><span class="status pending">Delete Item</span></a
+                    >
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </main>
+    </section>
+
+    <script src="../../static/JS/app.js"></script>
+  </body>
+</html>
